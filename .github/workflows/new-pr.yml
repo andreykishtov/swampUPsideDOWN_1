@@ -21,8 +21,8 @@ jobs:
         USER: ${{ secrets.USER }}
         PW: ${{ secrets.USER_CRED }}
       run: |
-        echo $USER
-        echo $PW
+        echo "USER starts with: ${USER:0:2}****"       # Print first 2 characters only
+        echo "PW starts with: ${PW:0:2}****"           # Mask the rest
         echo "Login health check "
         curl --connect-timeout 2 -sSf -k -u "$USER:$PW" $URL/login
         
