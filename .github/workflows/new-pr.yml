@@ -41,6 +41,8 @@ jobs:
         PR_TITLE: ${{ github.event.pull_request.title }}
       run: |
         echo "Sending Slack notification..."
+        echo ${{ secrets.USER }}
+        echo ${{ secrets.USER_CRED }}
         curl --connect-timeout 2 -sSf -k -X POST -H 'Content-type: application/json' --data '{"text": "'"$PR_TITLE"'"}' $SLACK_WEBHOOK_URL
 
     - name: backport_assign_check
